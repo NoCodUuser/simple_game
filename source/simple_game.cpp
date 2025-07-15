@@ -47,16 +47,16 @@ void Field::set_element(int _index_x, int _index_y, int _number)
     m_boss_array[_index_x][_index_y] = _number;
 }
 
-int Field::get_element(int _index_x, int _index_y)
+int Field::get_element(int _index_x, int _index_y) const
 {
     return m_boss_array[_index_x][_index_y];
 }
 
-int Field::get_columns()
+int Field::get_columns() const
 {
     return m_columns;
 }
-int Field::get_rows()
+int Field::get_rows() const
 {
     return m_rows;
 }
@@ -80,4 +80,17 @@ bool Field::is_out_of_field(int _index_x)
         return true;
     }
     return false;
+}
+
+void Field::insert_barrier(const Field& _barrier, int _column_offset, int _row_offset)
+{
+    for(int i = 0; i < _barrier.get_columns(); ++i)
+    {
+        for(int j = 0; j < _barrier.get_rows(); ++j)
+        {
+            int barrier_element = _barrier.get_element(i, j);
+            set_element(i + _column_offset, j + _row_offset, barrier_element);
+
+        }
+    }
 }

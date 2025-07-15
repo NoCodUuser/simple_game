@@ -18,14 +18,15 @@ public:
     void print();
 
     void set_element(int _index_x, int _index_y, int _number);
-    int get_element(int _index_x, int _index_y);
-    int get_size();
-    int get_columns();
-    int get_rows();
+    int get_element(int _index_x, int _index_y) const;
+    int get_columns() const;
+    int get_rows() const;
 
     bool is_out_of_field(int _index_x);
 
+    void insert_barrier(const Field& _barrier, int _column_offset, int _row_offset);
 };
+
 
 
 
