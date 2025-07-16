@@ -109,3 +109,4 @@ void Field::slide_field_down()
         m_boss_array[x][m_rows - 1] = 0;
     }
 }
+

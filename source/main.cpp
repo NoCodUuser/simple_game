@@ -68,13 +68,18 @@ int main()
         }
         else
         {
-            break;
+            continue;
         }
 
         moves_counter += 1;
         if(moves_counter == moves_until_barrier)
         {
-            game_field.insert_barrier(barrier, 5, 9);
+            int max_random_x = game_field.get_columns() - barrier.get_columns() + 1;
+            int random_x = rand() % max_random_x;
+            int dif_y = 9 - 6;
+            int random_y = rand() % dif_y + 6;
+
+            game_field.insert_barrier(barrier, random_x, random_y);
             moves_counter = 0;
         }
         game_field.print();
