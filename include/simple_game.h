@@ -24,6 +24,8 @@ public:
 
     bool is_out_of_field(int _index_x);
 
+    void slide_field_down();
+
     void insert_barrier(const Field& _barrier, int _column_offset, int _row_offset);
 };
 

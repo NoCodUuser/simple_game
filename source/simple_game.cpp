@@ -94,3 +94,18 @@ void Field::insert_barrier(const Field& _barrier, int _column_offset, int _row_o
         }
     }
 }
+
+void Field::slide_field_down()
+{
+    for(int y = 0; y < m_rows - 1; ++y)
+    {
+        for(int x = 0; x < m_columns; ++x)
+        {
+            m_boss_array[x][y] = m_boss_array[x][y + 1];
+        }
+    }
+    for(int x = 0; x < m_columns; ++x)
+    {
+        m_boss_array[x][m_rows - 1] = 0;
+    }
+}

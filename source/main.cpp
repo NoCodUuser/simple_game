@@ -4,14 +4,17 @@
 
 int main()
 {
-    int index_x = 5;
-    int index_y = 1;
-    int entered_number = 1;
+    int player_x = 5;
+    int player_y = 1;
+    int moves_counter = 0;
+
+    const int player_marker = 1;
+    const int moves_until_barrier = 4;
 
     Field game_field;
     game_field.allocate(11, 12);
 
-    game_field.set_element(index_x, index_y, entered_number);
+    game_field.set_element(player_x, player_y, player_marker);
 
     Field barrier;
     barrier.allocate(2, 2);
@@ -23,7 +26,7 @@ int main()
         }
     }
 
-    game_field.insert_barrier(barrier, 5, 7);
+    game_field.insert_barrier(barrier, 5, 9);
     game_field.print();
 
     while(true)
@@ -33,37 +36,47 @@ int main()
 
         if(turn == 'a')
         {
-            if(game_field.is_out_of_field(index_x - 1))
+            if(game_field.is_out_of_field(player_x - 1))
             {
                 game_field.print();
                 continue;
             }
 
-            game_field.set_element(index_x, index_y, 0);
+            game_field.set_element(player_x, player_y, 0);
 
-            index_x -= 1;
-            game_field.set_element(index_x, index_y, 1);
+            player_x -= 1;
+
+            game_field.slide_field_down();
+
+            game_field.set_element(player_x, player_y, player_marker);
         }
         else if(turn == 'd')
         {
-            if(game_field.is_out_of_field(index_x + 1))
+            if(game_field.is_out_of_field(player_x + 1))
             {
                 game_field.print();
                 continue;
             }
 
-            game_field.set_element(index_x, index_y, 0);
+            game_field.set_element(player_x, player_y, 0);
 
-            index_x += 1;
-            game_field.set_element(index_x, index_y, 1);
+            player_x += 1;
+
+            game_field.slide_field_down();
+
+            game_field.set_element(player_x, player_y, player_marker);
         }
         else
         {
             break;
         }
+
+        moves_counter += 1;
+        if(moves_counter == moves_until_barrier)
+        {
+            game_field.insert_barrier(barrier, 5, 9);
+            moves_counter = 0;
+        }
         game_field.print();
     }
-
-
-
 }
