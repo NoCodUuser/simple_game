@@ -14,11 +14,12 @@ public:
 
     void allocate(int _columns, int _rows);
     void clear();
-
     void print();
 
     void set_element(int _index_x, int _index_y, int _number);
     int get_element(int _index_x, int _index_y) const;
+    char convert_field_element(int cell);
+
     int get_columns() const;
     int get_rows() const;
 

@@ -66,10 +66,12 @@ void Field::print()
 {
     for(int j = get_rows() - 1; j > -1; --j)
     {
+        std::cout << "|";
         for(int i = 0; i < get_columns(); ++i)
         {
-            std::cout << m_boss_array[i][j] << " ";
+            std::cout << convert_field_element(m_boss_array[i][j]) << " ";
         }
+        std::cout << "|";
         std::cout << std::endl;
     }
 }
@@ -111,3 +113,18 @@ void Field::slide_field_down()
     }
 }
 
+char Field::convert_field_element(int cell)
+{
+    if(cell == 0)
+    {
+        return ' ';
+    }
+    else if(cell == 1)
+    {
+        return '^';
+    }
+    else
+    {
+        return '#';
+    }
+}
