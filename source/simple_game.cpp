@@ -1,5 +1,6 @@
-#include <simple_game.h>
 #include <iostream>
+
+#include <simple_game.h>
 
 
 Field::Field()
